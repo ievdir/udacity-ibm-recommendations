@@ -15535,10 +15535,52 @@ to provide recommendations based on most popular items among all users.</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count null values in user_item_matrix</span>
+<span class="n">user_item_matrix</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[64]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    714.0
+mean       0.0
+std        0.0
+min        0.0
+25%        0.0
+50%        0.0
+75%        0.0
+max        0.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Provide your response here.</strong></p>
+<h4 id="Results:">Results:<a class="anchor-link" href="#Results:">&#182;</a></h4><p>As statistics of user_item_matrix shows there are no missing values, the user_article matrix is full, we can use SVD method. Also, user_item_matrix values are binary 0/1 which define if user has any interaction with article. If this value would be missing, it could be possible to fill it with 0, assuming missing value had no interaction. Otherwise, we should use Funk SVD.</p>
 
 </div>
 </div>
@@ -16046,7 +16088,11 @@ How many articles in the test set are we not able to make predictions for becaus
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Results:">Results:<a class="anchor-link" href="#Results:">&#182;</a></h5><p>The chart above shows that training accuracy increases as the number of latent feature is higher than 100. Where training accuracy is ~72%. For the testing sample model behave differently. With latent features increase, test sample accuracy decraesing. This could be the result of overfitting. Also, it is important, that intersect of training and testing sample is only 20 users. There we need to add additional users information to get better model accuracy.</p>
+<h5 id="Results:">Results:<a class="anchor-link" href="#Results:">&#182;</a></h5><p><strong>Accuracy comparison:</strong></p>
+<p>The chart above shows that training accuracy increases as the number of latent feature is higher than 100. Where training accuracy is ~72%. For the testing sample model behave differently. With latent features increase, test sample accuracy decraesing. This could be the result of overfitting. Also, it is important, that intersect of training and testing sample is only 20 users. There we need to add additional users information to get better model accuracy and to make predictions for a bigger users sample.</p>
+<p><strong>How to measure recommendations quality?</strong></p>
+<p>Even we have a small test sample, it would be a good idea to set up A/B test. This would help to identify how users would react to articles which were not seen before. Where one test group would be prediction (made by recommender), the control group (no recommendations) and compared the results if users find more attractive content for them. Also, it is possible to compare multiple recommenders effectiveness, for example, rank based recommendations vs matrix factorization.</p>
+<p>Metrics to track these improvements could be: number of interactions with articles, number of unique articles, clicks on articles, clicks on new articles, repetitive clicks on suggested articles.</p>
 
 </div>
 </div>
@@ -16069,7 +16115,7 @@ How many articles in the test set are we not able to make predictions for becaus
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="k">import</span> <span class="n">call</span>
@@ -16077,6 +16123,26 @@ How many articles in the test set are we not able to make predictions for becaus
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[59]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
